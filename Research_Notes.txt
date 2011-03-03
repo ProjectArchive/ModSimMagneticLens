@@ -1,0 +1,9 @@
+http://electronics.howstuffworks.com/tv3.htm
+
+http://www.tpub.com/neets/book6/21e.htm (figure 2-19)
+
+http://www.aspexcorp.com/products/whatissem/lenses.html
+
+Things we'll need to simulate (maybe):
+Electron gun: uses a cathode to emit electrons, with a negatively charged metal 
+chamber sorrounding the cathode to aim the electrons toward the accelerating anode.
