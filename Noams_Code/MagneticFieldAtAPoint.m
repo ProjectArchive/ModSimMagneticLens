@@ -9,15 +9,14 @@ function iRes = theIntegrand(rMeasure,theta)
 rad = .05;
 d = .1;
 
-rSource1 = [rad*cos(theta);rad*sin(theta);d/2*(ones(1,length(theta)))]; % parametize the source curve of dipoles
-rSource2 =  [rad*cos(theta);rad*sin(theta);-d/2*(ones(1,length(theta)))];
+rSource1 = [rad*cos(theta);rad*sin(theta);0]; % parametize the source curve of dipoles
 
-iRes = magneticFieldOfR(rMeasure,rSource1)+magneticFieldOfR(rMeasure,rSource2);
+iRes = magneticFieldOfR(rMeasure,rSource1);
 end
 
 function magField = magneticFieldOfR(rMeasure,rSource)
 mu_0 = 1e-7;
-M = [0;0;-7.7579e4];
+M = [0;0;-.7579];
 displacement =(rMeasure-rSource);
 coefficients = mu_0/(norm(displacement)^3);
 D_hat = (displacement)/norm(displacement);
