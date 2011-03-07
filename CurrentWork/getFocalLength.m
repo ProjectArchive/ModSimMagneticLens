@@ -1,4 +1,4 @@
-function focalLength = getFocalLength(MVector)
+function focalLength = getFocalLength(M)
 X = M(:,1);
 Y = M(:,2);
 Z = M(:,3);

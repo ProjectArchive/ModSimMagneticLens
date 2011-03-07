@@ -9,16 +9,23 @@ rInit1 = [ .03 0 .5];
 rInit2 = [ -.03 0 .5];
 rInit3 = [ 0 .03 .5];
 rInit4 = [ 0 -.03 .5];
-vInit = [0 0 -1e8];
-trajectory = particleLaunch(rInit1,vInit);
+vInit1 = [0 0 -1e8];
+vInit2 = [0 0 -1e8];
+vInit3 = [0 0 -1e8];
+vInit4 = [0 0 -1e8];
+trajectory = particleLaunch(rInit1,vInit1);
 plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
+getFocalLength(trajectory)
 hold on
-trajectory = particleLaunch(rInit2,vInit);
+trajectory = particleLaunch(rInit2,vInit2);
 plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-trajectory = particleLaunch(rInit3,vInit);
+getFocalLength(trajectory)
+trajectory = particleLaunch(rInit3,vInit3);
 plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-trajectory = particleLaunch(rInit4,vInit);
+getFocalLength(trajectory)
+trajectory = particleLaunch(rInit4,vInit4);
 plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
+getFocalLength(trajectory)
 theta = linspace(0,2*pi,2000);
 A = cos(theta);
 B = sin(theta);
@@ -39,6 +46,7 @@ zlabel('Z(m)');
         M = LaunchAnElectron([Rx;Ry;Rz],[Vx;Vy;Vz]);
         res = M;
     end
+
     function res = LaunchAnElectron(R_init,V_init)
         function [value,isterminal,direction] =events(t,M)
             value = M(3)+1;
@@ -49,6 +57,7 @@ zlabel('Z(m)');
         [T, M] = ode45(@projectile, [0,.0000001], [R_init,V_init],options);
         res = M;
     end
+
     function res = projectile(t, W)
         R = W(1:3);
         V = W(4:6);
@@ -56,21 +65,25 @@ zlabel('Z(m)');
         dVdt = acceleration(t, R, V);
         res = [dRdt(1);dRdt(2);dRdt(3); dVdt(1);dVdt(2);dVdt(3)];
     end
+
     function res = acceleration(t, R,V)
         rMeasure = R;
         
         res = cross(V,MagneticFieldAtAPoint(rMeasure)) * q/m;
     end
+
     function res = MagneticFieldAtAPoint(rMeasure)
         
         res =quadv(@(theta) theIntegrand(rMeasure,theta),0,2*pi);
         
     end
+
     function iRes = theIntegrand(rMeasure,theta)
         rSource1 = [rad*cos(theta);rad*sin(theta);0]; % parametize the source curve of dipoles
         %rSource2 = [rad*cos(theta);rad*sin(theta);-d];
         iRes = magneticFieldOfR(rMeasure,rSource1);
     end
+
     function magField = magneticFieldOfR(rMeasure,rSource)
         displacement =(rMeasure-rSource);
         coefficients = mu_0/(norm(displacement)^3);
