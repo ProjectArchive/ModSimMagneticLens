@@ -5,16 +5,17 @@ rad = .05;
 q = -1.6e-19;
 m=9.1e-31;
 d = .5;
+I = 70;
     function res = getParticle(R,V)
         trajectory = particleLaunch(R,V);
         plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
         getFocalLength(trajectory)
     end
-getParticle([0 0 .5],[-3e6 3e6 -1e8])
+getParticle([.02 .02 .5],[0 0 -1e7])
 hold on
-getParticle([0 0 .5],[3e6 -3e6 -1e8])
-getParticle([0 0 .5],[-3e6 -3e6 -1e8])
-getParticle([0 0 .5],[3e6 3e6 -1e8])
+getParticle([-.02 .02 .5],[0 0 -1e7])
+getParticle([.02 -.02 .5],[0 0 -1e7])
+getParticle([-.02 -.02 .5],[0 0 -1e7])
 theta = linspace(0,2*pi,2000);
 A = cos(theta);
 B = sin(theta);
@@ -70,7 +71,8 @@ zlabel('Z(m)');
     function iRes = theIntegrand(rMeasure,theta)
         rSource1 = [rad*cos(theta);rad*sin(theta);0]; % parametize the source curve of dipoles
         %rSource2 = [rad*cos(theta);rad*sin(theta);-d];
-        iRes = magneticFieldOfR(rMeasure,rSource1);
+        dL = [rad*-sin(theta);rad*cos(theta);0];
+        iRes = loopBFieldofR(rMeasure,rSource1,dL);
     end
 
     function magField = magneticFieldOfR(rMeasure,rSource)
@@ -78,5 +80,11 @@ zlabel('Z(m)');
         coefficients = mu_0/(norm(displacement)^3);
         D_hat = (displacement)/norm(displacement);
         magField = coefficients*(3*(dot(magVec,D_hat))*D_hat - magVec);
+    end
+
+    function magField = loopBFieldofR(rMeasure,rSource,dL)
+        displacement =(rMeasure-rSource);
+        coefficients = I*mu_0/(norm(displacement)^3);
+        magField = coefficients*cross(dL,displacement);
     end
 end
