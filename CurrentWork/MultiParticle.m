@@ -5,27 +5,16 @@ rad = .05;
 q = -1.6e-19;
 m=9.1e-31;
 d = .5;
-rInit1 = [ 0 0 .5];
-rInit2 = [ 0 0 .5];
-rInit3 = [ 0 0 .5];
-rInit4 = [ 0 0 .5];
-vInit1 = [-3e6 3e6 -1e8];
-vInit2 = [3e6 -3e6 -1e8];
-vInit3 = [-3e6 -3e6 -1e8];
-vInit4 = [3e6 3e6 -1e8];
-trajectory = particleLaunch(rInit1,vInit1);
-plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-getFocalLength(trajectory)
+    function res = getParticle(R,V)
+        trajectory = particleLaunch(R,V);
+        plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
+        getFocalLength(trajectory)
+    end
+getParticle([0 0 .5],[-3e6 3e6 -1e8])
 hold on
-trajectory = particleLaunch(rInit2,vInit2);
-plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-getFocalLength(trajectory)
-trajectory = particleLaunch(rInit3,vInit3);
-plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-getFocalLength(trajectory)
-trajectory = particleLaunch(rInit4,vInit4);
-plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-getFocalLength(trajectory)
+getParticle([0 0 .5],[3e6 -3e6 -1e8])
+getParticle([0 0 .5],[-3e6 -3e6 -1e8])
+getParticle([0 0 .5],[3e6 3e6 -1e8])
 theta = linspace(0,2*pi,2000);
 A = cos(theta);
 B = sin(theta);
