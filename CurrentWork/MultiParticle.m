@@ -5,14 +5,14 @@ rad = .05;
 q = -1.6e-19;
 m=9.1e-31;
 d = .5;
-rInit1 = [ .03 0 .5];
-rInit2 = [ -.03 0 .5];
-rInit3 = [ 0 .03 .5];
-rInit4 = [ 0 -.03 .5];
-vInit1 = [0 0 -1e8];
-vInit2 = [0 0 -1e8];
-vInit3 = [0 0 -1e8];
-vInit4 = [0 0 -1e8];
+rInit1 = [ 0 0 .5];
+rInit2 = [ 0 0 .5];
+rInit3 = [ 0 0 .5];
+rInit4 = [ 0 0 .5];
+vInit1 = [-3e6 3e6 -1e8];
+vInit2 = [3e6 -3e6 -1e8];
+vInit3 = [-3e6 -3e6 -1e8];
+vInit4 = [3e6 3e6 -1e8];
 trajectory = particleLaunch(rInit1,vInit1);
 plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
 getFocalLength(trajectory)
