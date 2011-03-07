@@ -1,7 +1,7 @@
 function focalLength = getFocalLength(MVector)
-X = M(:,1);
-Y = M(:,2);
-Z = M(:,3);
+X = MVector(:,1);
+Y = MVector(:,2);
+Z = MVector(:,3);
 maxError = 0.001;
 
 
