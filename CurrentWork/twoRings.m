@@ -16,6 +16,7 @@ particleLaunch()
         Vz = -1e8;
         hold on
         M = LaunchAnElectron([Rx;Ry;Rz],[Vx;Vy;Vz]);
+        display(length(M(:,1)));
         display(getFocalLength(M));
         plot3(M(:,1),M(:,2),M(:,3))
         theta = linspace(0,2*pi,2000);
