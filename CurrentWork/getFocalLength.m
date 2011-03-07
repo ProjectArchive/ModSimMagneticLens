@@ -27,5 +27,8 @@ end
         findZero = zIndexStart;
     end
 
+
+focalLength = -1; %if there was no focal length, give a nonsensical value.
+
 end
 
