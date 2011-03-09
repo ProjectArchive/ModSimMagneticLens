@@ -1,4 +1,4 @@
-function res = paramHelper(current)
+function res = paramHelper(current,velocity)
 mu_0 = 1e-7;
 magVec = [0;0;-1.5];
 rad = .05;
@@ -14,11 +14,11 @@ I = current;
         res = F;
     end
 f = zeros(1,4);
-f(1)=getParticle([.02 .02 .5],[0 0 -1e7]);
+f(1)=getParticle([.02 .02 5],[0 0 velocity]);
 hold on
-f(2)=getParticle([-.02 .02 .5],[0 0 -1e7]);
-f(3)=getParticle([.02 -.02 .5],[0 0 -1e7]);
-f(4)=getParticle([-.02 -.02 .5],[0 0 -1e7]);
+f(2)=getParticle([-.02 .02 5],[0 0 velocity]);
+f(3)=getParticle([.02 -.02 5],[0 0 velocity]);
+f(4)=getParticle([-.02 -.02 5],[0 0 velocity]);
 
 res = mean(f);
 
