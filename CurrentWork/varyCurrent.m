@@ -1,7 +1,7 @@
 function res = varyCurrent()
 clear;
 clf;
-current = linspace(50,200,50);
+current = linspace(10,2000,500);
 
 focalLength = zeros(1,length(current));
 parfor i = 1:length(current)
