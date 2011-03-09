@@ -8,17 +8,18 @@ d = .5;
 I = current;
     function res = getParticle(R,V)
         trajectory = particleLaunch(R,V);
-%         plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
+% plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
         F = getFocalLength(trajectory);
-%         line([0,0,0],[0,0,0],[0,0,F],'LineWidth',5)
+% line([0,0,0],[0,0,0],[0,0,F],'LineWidth',5)
         res = F;
     end
 f = zeros(1,4);
-f(1)=getParticle([.02 .02 5],[0 0 velocity]);
 hold on
-f(2)=getParticle([-.02 .02 5],[0 0 velocity]);
-f(3)=getParticle([.02 -.02 5],[0 0 velocity]);
-f(4)=getParticle([-.02 -.02 5],[0 0 velocity]);
+
+f(1)=getParticle([.02 .02 .5],[0 0 velocity]);
+f(2)=getParticle([-.02 .02 .5],[0 0 velocity]);
+f(3)=getParticle([.02 -.02 .5],[0 0 velocity]);
+f(4)=getParticle([-.02 -.02 .5],[0 0 velocity]);
 
 res = mean(f);
 
