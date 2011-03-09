@@ -9,7 +9,9 @@ I = 70;
     function res = getParticle(R,V)
         trajectory = particleLaunch(R,V);
         plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-        getFocalLength(trajectory)
+        F = getFocalLength(trajectory)
+        line([0,0,0],[0,0,0],[0,0,F],'LineWidth',5)
+    
     end
 getParticle([.02 .02 .5],[0 0 -1e7])
 hold on
