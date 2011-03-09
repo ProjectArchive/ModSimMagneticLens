@@ -1,5 +1,4 @@
 function res = MultiParticle()
-clf;
 mu_0 = 1e-7;
 magVec = [0;0;-1.5];
 rad = .05;
@@ -10,14 +9,13 @@ I = 70;
     function res = getParticle(R,V)
         trajectory = particleLaunch(R,V);
         plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-        F = getFocalLength(trajectory)
-        line([0,0],[0,0],[0,F],'LineWidth',5,'Color','k')
+        getFocalLength(trajectory)
     end
-getParticle([.02 .02 5],[0 0 -1e8])
+getParticle([.02 .02 .5],[0 0 -1e7])
 hold on
-getParticle([-.02 .02 5],[0 0 -1e8])
-getParticle([.02 -.02 5],[0 0 -1e8])
-getParticle([-.02 -.02 5],[0 0 -1e8])
+getParticle([-.02 .02 .5],[0 0 -1e7])
+getParticle([.02 -.02 .5],[0 0 -1e7])
+getParticle([-.02 -.02 .5],[0 0 -1e7])
 theta = linspace(0,2*pi,2000);
 A = cos(theta);
 B = sin(theta);
@@ -41,14 +39,12 @@ zlabel('Z(m)');
 
     function res = LaunchAnElectron(R_init,V_init)
         function [value,isterminal,direction] =events(t,M)
-            value = M(3)+5;
+            value = M(3)+1;
             isterminal = 1;
             direction = -1;
         end
         options = odeset('Events',@events);
-        [T, M] = ode45(@projectile, [0,.0001], [R_init,V_init],options);
-        
-%         [T, M] = ode45(@projectile, [0,.000001], [R_init,V_init]);
+        [T, M] = ode45(@projectile, [0,.0000001], [R_init,V_init],options);
         res = M;
     end
 
