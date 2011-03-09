@@ -1,4 +1,4 @@
-function res = MultiParticle(current)
+function res = paramHelper(current)
 mu_0 = 1e-7;
 magVec = [0;0;-1.5];
 rad = .05;
@@ -8,25 +8,28 @@ d = .5;
 I = current;
     function res = getParticle(R,V)
         trajectory = particleLaunch(R,V);
-        plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
-        getFocalLength(trajectory)
-        line([0,0,0],[0,0,0],[0,0,F],'LineWidth',5)
+%         plot3(trajectory(:,1),trajectory(:,2),trajectory(:,3))
+        F = getFocalLength(trajectory);
+%         line([0,0,0],[0,0,0],[0,0,F],'LineWidth',5)
+        res = F;
     end
-
-getParticle([.02 .02 .5],[0 0 -1e7]);
+f = zeros(1,4);
+f(1)=getParticle([.02 .02 .5],[0 0 -1e7]);
 hold on
-getParticle([-.02 .02 .5],[0 0 -1e7]);
-getParticle([.02 -.02 .5],[0 0 -1e7]);
-getParticle([-.02 -.02 .5],[0 0 -1e7]);
+f(2)=getParticle([-.02 .02 .5],[0 0 -1e7]);
+f(3)=getParticle([.02 -.02 .5],[0 0 -1e7]);
+f(4)=getParticle([-.02 -.02 .5],[0 0 -1e7]);
 
-theta = linspace(0,2*pi,2000);
-A = cos(theta);
-B = sin(theta);
-plot3(rad*A,rad*B,zeros(1,length(A)),'r','LineWidth',5);
-% plot3(rad*A,rad*B,-d*ones(1,length(A)),'k','LineWidth',5);
-xlabel('X(m)');
-ylabel('Y(m)');
-zlabel('Z(m)');
+res = mean(f);
+
+% theta = linspace(0,2*pi,2000);
+% A = cos(theta);
+% B = sin(theta);
+% plot3(rad*A,rad*B,zeros(1,length(A)),'r','LineWidth',5);
+% % plot3(rad*A,rad*B,-d*ones(1,length(A)),'k','LineWidth',5);
+% xlabel('X(m)');
+% ylabel('Y(m)');
+% zlabel('Z(m)');
 
     function res = particleLaunch(pInitial,vInitial)
         Rx = pInitial(1);
