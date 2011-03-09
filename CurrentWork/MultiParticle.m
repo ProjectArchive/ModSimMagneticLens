@@ -73,7 +73,7 @@ zlabel('Z(m)');
 
     function iRes = theIntegrand(rMeasure,theta)
         rSource1 = [rad*cos(theta);rad*sin(theta);0]; % parametize the source curve of dipoles
-        %rSource2 = [rad*cos(theta);rad*sin(theta);-d];
+        rSource2 = [rad*cos(theta);rad*sin(theta);-d];
         dL = [rad*-sin(theta);rad*cos(theta);0];
         iRes = loopBFieldofR(rMeasure,rSource1,dL);
     end
