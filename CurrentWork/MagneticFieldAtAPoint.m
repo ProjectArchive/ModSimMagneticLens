@@ -6,7 +6,6 @@ res =quadv(@(theta) theIntegrand(rMeasure,theta),0,2*pi);
         rSource = [radius*cos(theta);radius*sin(theta);0]; % parametize the curve
         r = rMeasure-rSource;
         dL = [radius*-sin(theta);radius*cos(theta);0];
-        
         iRes = constants*cross(I*dL, r)/((norm(r)^3));
     end
 end
