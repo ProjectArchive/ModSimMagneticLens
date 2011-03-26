@@ -3,6 +3,7 @@ function res = LaunchAnElectron(R_init,V_init,radius,I)
 q = -1.6e-19;
 m=9.1e-31;
 %constants%
+rad = radius;
 
 options = odeset('Events',@events);
 [T, M] = ode45(@projectile, [0,.0000001], [R_init,V_init],options);
