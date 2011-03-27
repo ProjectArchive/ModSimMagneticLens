@@ -21,7 +21,7 @@ res = M;
     end
 
     function [value,isterminal,direction] =events(t,M)
-        value = M(3)+1;
+        value = M(3)+5;
         isterminal = 1;
         direction = -1;
     end
