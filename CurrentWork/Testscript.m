@@ -1,5 +1,5 @@
 radius = .05;
-LaunchAnElectron([.02,.02,.5],[0,0,-1e8],radius,500)
+LaunchAnElectron([.02,.02,.5],[0,0,-1e8],radius,500);
 theta = linspace(0,2*pi,20);
 x = radius*cos(theta);
 y = radius*sin(theta);
