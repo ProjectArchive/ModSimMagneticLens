@@ -1,9 +1,7 @@
 %lolwut Focal Length
-
 clf;
 clc;
 clear all;
-
 radii = linspace(0,.049,50);
 % velocities = logspace(1e5,1e8,5);
 for i = 1:length(radii)
