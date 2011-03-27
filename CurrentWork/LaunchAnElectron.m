@@ -4,11 +4,9 @@ q = -1.6e-19;
 m=9.1e-31;
 %constants%
 rad = radius;
-
 options = odeset('Events',@events);
 [T, M] = ode45(@projectile, [0,.0000001], [R_init,V_init],options);
 res = M;
-
     function res = projectile(t, W)
         R = W(1:3);
         V = W(4:6);
@@ -19,7 +17,6 @@ res = M;
 
     function res = acceleration(t, R,V)
         rMeasure = R;
-        
         res = cross(V,MagneticFieldAtAPoint(rMeasure,radius,I)) * q/m;
     end
 
