@@ -1,4 +1,4 @@
-function res = MultiParticleLauncher(numParticles,particleLaunchRadius,particleLaunchHeight)
+function res = MultiParticleLauncher(numParticles,particleLaunchRadius,particleLaunchHeight,particleLaunchVelocity)
 
 ringRadius = .05;
 theta = linspace(0,2*pi,numParticles);
@@ -13,7 +13,7 @@ zParticle = particleLaunchHeight*ones(numParticles);
 focalLength = zeros(numParticles);
 
 for i = 1:numParticles
-    temp = LaunchAnElectron([xParticle(i),yParticle(i),zParticle(i)],[0,0,-1e7],ringRadius,50);
+    temp = LaunchAnElectron([xParticle(i),yParticle(i),zParticle(i)],[0,0,-particleLaunchVelocity],ringRadius,50);
 %     plot3(temp(:,1),temp(:,2),temp(:,3))
     focalLength(i) = getFocalLength(temp);
     

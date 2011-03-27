@@ -1,10 +1,14 @@
 %lolwut Focal Length
 
-radii = linspace(0,.049,50);
-focalLengths = zeros(length(radii));
+clf;
+clc;
+clear all;
+
+radii = linspace(0,.049,5);
+velocities = linspace(1e5,1e8,5);
 for i = 1:length(radii)
-    focalLengths(i)=MultiParticleLauncher(5,radii(i),.5);
+    for j = 1:length(velocities)
+        focalLengths(i,j)=MultiParticleLauncher(5,radii(i),.5,velocities(j));
+    end
 end
-figure()
-clf()
-plot(radii,focalLengths)
+plot(focalLengths)
