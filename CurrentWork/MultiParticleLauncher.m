@@ -1,7 +1,8 @@
-function res = MultiParticleLauncher(numParticles,particleLaunchRadius,particleLaunchHeight,particleLaunchVelocity)
+function res = MultiParticleLauncher(numParticles,ringRadius,particleLaunchHeight,particleLaunchVelocity)
 
-ringRadius = .05;
+
 theta = linspace(0,2*pi,numParticles);
+particleLaunchRadius = .6 * ringRadius;
 
 xParticle = particleLaunchRadius*cos(theta);
 yParticle = particleLaunchRadius*sin(theta);
