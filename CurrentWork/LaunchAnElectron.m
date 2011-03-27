@@ -5,7 +5,7 @@ m=9.1e-31;
 %constants%
 rad = radius;
 options = odeset('Events',@events);
-[T, M] = ode45(@projectile, [0,.0000001], [R_init,V_init],options);
+[T, M] = ode45(@projectile, [0,.00001], [R_init,V_init],options);
 res = M;
     function res = projectile(t, W)
         R = W(1:3);
