@@ -11,14 +11,16 @@ zParticle = particleLaunchHeight*ones(numParticles);
 % hold on
 
 focalLength = zeros(numParticles);
+separation = zeros(numParticles);
 
 for i = 1:numParticles
     temp = LaunchAnElectron([xParticle(i),yParticle(i),zParticle(i)],[0,0,-particleLaunchVelocity],ringRadius,50);
 %     plot3(temp(:,1),temp(:,2),temp(:,3))
-    focalLength(i) = getFocalLength(temp);
-    
+    focalLengthAndSeparation = getFocalLength(temp);
+    focalLength(i) = focalLengthAndSeparation(1);
+    separation(i) = focalLengthAndSeparation(2);
 end
-m = mean(focalLength);
-res = -m(1);
-
+f = -mean(focalLength);
+s = mean(separation);
+res = [f(1),s(1)];
 end
