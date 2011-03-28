@@ -1,27 +1,33 @@
 function plotBField()
 clf;clc;clear;
-mu_0 = 1e-7;
-magVec = [0;0;-1.5];
 rad = .05;
 I = 50;
 
 % theta = linspace(0,2*pi,20);
-x = linspace(-.075,.075,20);
+% x = linspace(-.075,.075,20);
 y = linspace(-.075,.075,20);
 z = linspace(-.5,.5,20);
 
-[X Y ] = meshgrid(x,y);
+[Y Z ] = meshgrid(y,z);
 
-for i_x =1:length(x)
-    for i_y =1:length(y)
+for i_y =1:length(y)
+    for i_z =1:length(z)
        % for i_z =1:length(z)
-            measVec = [x(i_x);y(i_y);0.0005];
+            measVec = [0;y(i_y);z(i_z)];
             BField = MagneticFieldAtAPoint(measVec,rad,I);
-            U(i_x,i_y) = BField(1);
-            V(i_x,i_y) = BField(2);
-            %W(i_x,i_y,i_z) = BField(3);
+%             U(i_y,i_z) = BField(1);
+            V(i_y,i_z) = BField(2);
+            W(i_y,i_z) = BField(3);
         end
 end
-streamslice(X,Y,U,V)
-hold on;
+streamslice(Y,Z,V,W)
+% for i = 1:length(V)
+%     for j=1:length(W)
+%         B(i,j)=sqrt(V(i,j)^2+W(i,j)^2);
+%     end
+% end
+% surf(Y,Z,B)
+% % quiver(Y,Z,V,W)
+% shading interp
+% hold on;
 end
