@@ -3,7 +3,7 @@
 clf;
 clc;
 clear all;
-current = linspace(.50,200,50);
+current = linspace(20,500,50);
 % velocities = logspace(1e5,1e8,5);
 for i = 1:length(current)
         temp = MultiParticleLauncher(2,.05,.5,1e7,current(i));
