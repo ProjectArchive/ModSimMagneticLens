@@ -8,14 +8,14 @@ xParticle = particleLaunchRadius*cos(theta);
 yParticle = particleLaunchRadius*sin(theta);
 zParticle = particleLaunchHeight;
 
-plotRing(ringRadius)
-hold on
+% plotRing(ringRadius)
+% hold on
 
 
 focalLengthAndSeparation= zeros(numParticles,2);
 for i = 1:numParticles
     temp = LaunchAnElectron([xParticle(i),yParticle(i),zParticle],[0,0,-particleLaunchVelocity],ringRadius,current);
-    plot3(temp(:,1),temp(:,2),temp(:,3))
+%     plot3(temp(:,1),temp(:,2),temp(:,3))
     focalLengthAndSeparation(i,:) = getFocalLength(temp);
 end
 f = -(focalLengthAndSeparation(:,1));
